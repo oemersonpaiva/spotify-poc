@@ -1,11 +1,11 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
-
+import { screen } from '@testing-library/react'
+import { renderWithProviders } from 'utils/tests/helpers'
 import Main from '.'
 
 describe('<Main />', () => {
   it('should render the heading', () => {
-    const { container } = render(<Main />)
+    const { container } = renderWithProviders(<Main />)
 
     expect(
       screen.getByRole('heading', { name: /react template/i })
