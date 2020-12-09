@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects'
-import * as usersSagas from './users'
+import * as authSagas from './auth'
 
 function* sagas() {
-  yield all([usersSagas.watchSagas()])
+  yield all([authSagas.watchSagas()])
 }
 
 export default sagas

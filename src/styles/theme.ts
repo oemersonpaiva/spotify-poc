@@ -24,7 +24,10 @@ export default {
   colors: {
     primary: '',
     secondary: '',
-    white: '#fafafa',
+    white: {
+      100: '#ffffff',
+      200: '#fafafa'
+    },
     black: '#030303'
   },
   spacings: {
