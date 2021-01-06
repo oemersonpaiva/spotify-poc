@@ -5,8 +5,8 @@ import { ThemeProvider } from 'styled-components'
 import { store } from 'store'
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
-import reportWebVitals from './reportWebVitals'
 import Main from 'components/presentational/Main'
+import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
   <React.StrictMode>
