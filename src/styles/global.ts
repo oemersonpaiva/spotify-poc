@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-      background-color: ${theme.colors.white[200]}
+      background-color: ${theme.colors.white[200]};
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
     }

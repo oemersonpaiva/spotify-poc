@@ -8,10 +8,10 @@ export default {
   },
   font: {
     family:
-      "Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-    light: 300,
-    normal: 400,
-    bold: 600,
+      "Open Sans, -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+    light: 400,
+    normal: 600,
+    bold: 700,
     sizes: {
       xsmall: '1.2rem',
       small: '1.4rem',
@@ -22,13 +22,17 @@ export default {
     }
   },
   colors: {
-    primary: '',
+    primary: '#ea1d2c',
     secondary: '',
     white: {
       100: '#ffffff',
-      200: '#fafafa'
+      200: '#fafafa',
+      300: '#f3f4f4'
     },
-    black: '#030303'
+    black: {
+      100: '#030303',
+      200: '#050606'
+    }
   },
   spacings: {
     xxsmall: '0.8rem',
@@ -45,5 +49,8 @@ export default {
     overlay: 30,
     modal: 40,
     alwaysOnTop: 50
+  },
+  sizes: {
+    navbar: '7rem'
   }
-}
+} as const
