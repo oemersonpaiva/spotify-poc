@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Avatar /> should render the heading 1`] = `
+<img
+  alt="User"
+  class="sc-gsTCUz gbCiAz"
+  src="https://i.pravatar.cc/300"
+/>
+`;
