@@ -1,9 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Avatar /> should render the heading 1`] = `
+.c0 {
+  height: 100%;
+  width: 100%;
+}
+
 <img
   alt="User"
-  class="sc-gsTCUz gbCiAz"
+  class="c0"
   src="https://i.pravatar.cc/300"
 />
 `;
