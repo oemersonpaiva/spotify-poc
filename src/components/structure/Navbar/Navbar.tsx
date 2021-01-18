@@ -1,5 +1,4 @@
-import Avatar from 'components/structure/Avatar'
-import Logo from 'components/structure/Logo'
+import { Avatar, Logo } from 'components/structure'
 import * as S from './Navbar.styles'
 
 export type NavbarProps = {

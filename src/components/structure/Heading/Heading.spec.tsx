@@ -1,5 +1,5 @@
 import { renderWithProviders } from 'utils/tests/helpers'
-import Heading from 'components/structure/Heading'
+import Heading from './Heading'
 
 describe('<Heading />', () => {
   it('should render default heading', () => {

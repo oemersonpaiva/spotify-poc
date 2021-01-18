@@ -1,5 +1,5 @@
 import { renderWithProviders } from 'utils/tests/helpers'
-import Logo from '.'
+import Logo from './Logo'
 
 describe('<Logo />', () => {
   it('should render the heading', () => {

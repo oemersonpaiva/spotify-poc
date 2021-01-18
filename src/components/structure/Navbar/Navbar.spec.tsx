@@ -1,5 +1,5 @@
 import { renderWithProviders } from 'utils/tests/helpers'
-import Navbar from 'components/structure/Navbar'
+import Navbar from './Navbar'
 
 describe('<Navbar />', () => {
   it('should render default heading', () => {

@@ -1,5 +1,5 @@
 import { renderWithProviders } from 'utils/tests/helpers'
-import Avatar from '.'
+import Avatar from './Avatar'
 
 describe('<Avatar />', () => {
   it('should render the heading', () => {
