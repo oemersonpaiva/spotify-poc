@@ -5,15 +5,15 @@ import { ThemeProvider } from 'styled-components'
 import { store } from 'store'
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
-import Main from 'components/presentational/Main'
 import reportWebVitals from './reportWebVitals'
+import Routes from 'routes'
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Main />
+        <Routes />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
