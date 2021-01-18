@@ -1,26 +1,55 @@
+import api from 'services/api'
 import { put, takeLatest } from 'redux-saga/effects'
-import authService from 'services/auth'
-import { POST } from 'utils/constants/verbs'
-import { AuthActions, AuthTypes } from 'store/ducks/auth'
+import { AuthActions, AuthTypes, UserInfos } from 'store/ducks/auth'
+import { SessionParams } from 'hooks/useURLParams'
+import { ls, Session } from 'utils/auth/session'
+import { GET, AUTH_USER_DATA, authURL } from 'utils/constants'
+import { history } from 'routes'
 
-interface SignIn {
+type SignIn = {
   type: string
 }
 
+type SignInSuccess = SignIn & {
+  sessionParams: SessionParams
+}
+
 function* signIn({ type }: SignIn) {
-  // TODO move keys to .env
   try {
-    const { data } = yield authService({
-      method: POST,
-      url: 'token',
-      data: 'grant_type=client_credentials',
-      headers: {
-        Authorization: `Basic ${btoa(
-          'd45014c70903415d82367378cb49d0b6:c0ad9b8e347f4165a9d74ab7f4d00bf4'
-        )}`
-      }
+    window.location.href = authURL
+  } catch ({ response }) {
+    yield put(AuthActions.authRequestRejected(response, type))
+  }
+}
+
+function* signInSuccess({ type, sessionParams }: SignInSuccess) {
+  try {
+    const { accessToken, tokenType, expireTime } = sessionParams
+
+    ls.set(Session.ACCESS_TOKEN, accessToken)
+    ls.set(Session.TOKEN_TYPE, tokenType)
+    ls.set(Session.EXPIRE_TIME, expireTime)
+    history.push('/')
+  } catch ({ response }) {
+    yield put(AuthActions.authRequestRejected(response, type))
+  }
+}
+
+function* fetchAuthUserData({ type }: SignIn) {
+  try {
+    const {
+      data: { id, display_name, images }
+    } = yield api({
+      url: AUTH_USER_DATA,
+      method: GET
     })
-    yield put(AuthActions.signInSuccess(data?.access_token))
+
+    const userInfos = {
+      id: id,
+      username: display_name,
+      avatarUrl: images[0].url
+    } as UserInfos
+    yield put(AuthActions.fetchAuthUserDataSuccess(userInfos))
   } catch ({ response }) {
     yield put(AuthActions.authRequestRejected(response, type))
   }
@@ -28,4 +57,6 @@ function* signIn({ type }: SignIn) {
 
 export function* watchSagas() {
   yield takeLatest(AuthTypes.SIGN_IN, signIn)
+  yield takeLatest(AuthTypes.SIGN_IN_SUCCESS, signInSuccess)
+  yield takeLatest(AuthTypes.FETCH_AUTH_USER_DATA, fetchAuthUserData)
 }
