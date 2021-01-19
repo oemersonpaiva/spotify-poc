@@ -1,13 +1,22 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.h1`
+export const Wrapper = styled.article`
   ${({ theme }) => css`
     background-color: ${theme.colors.white[100]};
-    box-shadow: inset 0px -1px 0px ${theme.colors.white};
     color: ${theme.colors.black};
-    height: ${theme.sizes.navbar};
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+
+    max-width: 270px;
   `}
+`
+
+export const ThumbWrapper = styled.div`
+  img {
+    height: 100%;
+    width: 100%;
+  }
 `

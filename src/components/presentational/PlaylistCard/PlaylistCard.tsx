@@ -1,13 +1,12 @@
+import { Playlist } from 'types/playlist'
 import * as S from './PlaylistCard.styles'
 
-export type PlaylistCardProps = {
-  name: string
-  thumbUrl: string
-}
-
-const PlaylistCard = ({ name, thumbUrl }: PlaylistCardProps) => (
+const PlaylistCard = ({ name, images }: Playlist) => (
   <S.Wrapper>
-    {name} {thumbUrl}
+    <S.ThumbWrapper>
+      <img src={images[0].url} alt={name} />
+    </S.ThumbWrapper>
+    <h3>{name}</h3>
   </S.Wrapper>
 )
 

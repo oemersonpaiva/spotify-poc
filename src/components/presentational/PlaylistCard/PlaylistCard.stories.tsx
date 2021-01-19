@@ -1,16 +1,15 @@
 import { Meta, Story } from '@storybook/react/types-6-0'
-import PlaylistCard, { PlaylistCardProps } from './PlaylistCard'
+import { Playlist } from 'types/playlist'
+import PlaylistCard from './PlaylistCard'
 
 export default {
   title: 'structure/PlaylistCard',
   component: PlaylistCard
 } as Meta
 
-export const Default: Story<PlaylistCardProps> = (args) => (
-  <PlaylistCard {...args} />
-)
+export const Default: Story<Playlist> = (args) => <PlaylistCard {...args} />
 
 Default.args = {
-  name: 'Username',
-  thumbUrl: 'https://i.pravatar.cc/300'
+  name: 'Playlist Name',
+  images: [{ url: 'https://picsum.photos/200' }]
 }
