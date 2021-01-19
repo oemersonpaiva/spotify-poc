@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios'
-import { Playlist } from 'types/playlist'
+import { Playlists } from 'types/playlist'
 import { PutEffect } from 'redux-saga/effects'
 import { createActions, createReducer } from 'reduxsauce'
 import { REQUEST } from 'utils/constants/request'
-import { FailureRequest } from 'utils/types/request'
+import { FailureRequest } from 'types/request'
 
 export const {
   Types: PlaylistsTypes,
@@ -14,31 +14,12 @@ export const {
   authRequestRejected: ['response', 'originalType']
 })
 
-// TODO update types e interfaces
-export type Params = {
-  country: string
-  locale: string
-  timestamp: string
-  limit: number
-  offset: string
-}
-
-export type FetchPlaylistsSuccess = {
-  limit?: number
-  next?: number
-  offset?: number
-  previous?: number
-  total?: number
-  items: Playlist[]
-}
-
 export type PlaylistsState = {
   error?: AxiosResponse
-  items?: Playlist[]
   playlistsRequests: {
     [request: string]: string
   }
-} & FetchPlaylistsSuccess
+} & Playlists
 
 const INITIAL_STATE: PlaylistsState = {
   items: [],
@@ -57,7 +38,7 @@ export const fetchPlaylists = (state: PlaylistsState) => ({
 
 export const fetchPlaylistsSuccess = (
   state: PlaylistsState,
-  { payload }: PutEffect & FetchPlaylistsSuccess
+  { payload }: PutEffect & Playlists
 ) => ({
   ...state,
   ...payload,

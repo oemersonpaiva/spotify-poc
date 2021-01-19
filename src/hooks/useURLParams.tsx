@@ -1,18 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-
-interface ParamsFromURL {
-  access_token: string
-  token_type: string
-  expires_in: number
-  [key: string]: string | number
-}
-
-export interface SessionParams {
-  accessToken: string
-  tokenType: string
-  expireTime: string
-}
+import { ParamsFromURL, SessionParams } from 'types/session'
 
 export const getURLParams = (url = '') =>
   url
@@ -25,7 +13,7 @@ export const getURLParams = (url = '') =>
       return urlParams
     }, {} as ParamsFromURL)
 
-const useURLParams = (): SessionParams => {
+const useURLParams = () => {
   const location = useLocation()
   const [params, setParams] = useState({})
 

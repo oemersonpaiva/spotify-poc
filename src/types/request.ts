@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 
-export interface FailureRequest {
+export type FailureRequest = {
   response: AxiosResponse
   originalType: string
 }

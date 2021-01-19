@@ -1,8 +1,9 @@
 import { AxiosResponse } from 'axios'
 import { PutEffect } from 'redux-saga/effects'
 import { createActions, createReducer } from 'reduxsauce'
+import { UserInfos } from 'types/user'
 import { REQUEST } from 'utils/constants/request'
-import { FailureRequest } from 'utils/types/request'
+import { FailureRequest } from 'types/request'
 
 export const { Types: AuthTypes, Creators: AuthActions } = createActions({
   signIn: [],
@@ -12,13 +13,7 @@ export const { Types: AuthTypes, Creators: AuthActions } = createActions({
   authRequestRejected: ['response', 'originalType']
 })
 
-export interface UserInfos {
-  id: string
-  avatarUrl: string
-  username: string
-}
-
-export interface AuthState {
+export type AuthState = {
   error?: AxiosResponse
   user?: UserInfos
   authRequests: {
