@@ -1,6 +1,6 @@
 export default {
   grid: {
-    container: '130rem',
+    container: '120rem',
     gutter: '3.2rem'
   },
   border: {
@@ -8,9 +8,9 @@ export default {
   },
   font: {
     family:
-      "Open Sans, -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+      "Roboto, -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
     light: 400,
-    normal: 600,
+    normal: 500,
     bold: 700,
     sizes: {
       xsmall: '1.2rem',
@@ -27,7 +27,7 @@ export default {
     white: {
       100: '#ffffff',
       200: '#fafafa',
-      300: '#f3f4f4'
+      300: '#f0f4f7'
     },
     black: {
       100: '#030303',
