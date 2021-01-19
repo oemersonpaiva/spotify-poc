@@ -1,16 +1,12 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import api from 'services/api'
-import {
-  FetchPlaylistsSuccess,
-  Params,
-  PlaylistsActions,
-  PlaylistsTypes
-} from 'store/ducks/playlists'
+import { PlaylistsActions, PlaylistsTypes } from 'store/ducks/playlists'
+import { Playlists, PlaylistParams } from 'types/playlist'
 import { FEATURED_PLAYLISTS, GET } from 'utils/constants'
 
 export type FetchPlaylistTypes = {
   type: string
-  params: Params
+  params: PlaylistParams
 }
 
 function* fetchPlaylists({ type, params }: FetchPlaylistTypes) {
@@ -22,9 +18,7 @@ function* fetchPlaylists({ type, params }: FetchPlaylistTypes) {
       method: GET,
       params
     })
-    yield put(
-      PlaylistsActions.fetchPlaylistsSuccess(playlists as FetchPlaylistsSuccess)
-    )
+    yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists as Playlists))
   } catch ({ response }) {
     yield put(PlaylistsActions.authRequestRejected(response, type))
   }
