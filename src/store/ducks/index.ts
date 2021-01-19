@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import auth from './auth'
+import playlists from './playlists'
 
 const rootReducer = combineReducers({
-  auth
+  auth,
+  playlists
 })
 
 export type RootState = ReturnType<typeof rootReducer>
