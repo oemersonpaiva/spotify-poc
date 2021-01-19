@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { isAuthenticated } from 'utils/auth/session'
 import { Login } from 'components/presentational'
-import Main from 'components/presentational/Main'
+import { Home } from 'containers'
 
 export const history = createBrowserHistory()
 
@@ -33,7 +33,7 @@ const Routes = () => (
         path={'/login'}
         render={() => (isAuthenticated() ? <Redirect to="/" /> : <Login />)}
       />
-      <PrivateRoute path="/" Component={Main} />
+      <PrivateRoute path="/" Component={Home} />
     </Switch>
   </Router>
 )

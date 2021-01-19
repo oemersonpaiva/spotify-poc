@@ -6,6 +6,7 @@ export const Wrapper = styled.a`
     display: inline-flex;
     align-items: center;
     text-decoration: none;
+    font-size: ${theme.font.sizes.large};
     font-weight: ${theme.font.bold};
     transition: color 0.2s linear;
 

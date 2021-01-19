@@ -8,8 +8,10 @@ export type NavbarProps = {
 
 const Navbar = ({ username, avatarUrl }: NavbarProps) => (
   <S.Wrapper>
-    <Logo />
-    <Avatar src={avatarUrl} alt={username} />
+    <S.Container>
+      <Logo />
+      <Avatar src={avatarUrl} alt={username} />
+    </S.Container>
   </S.Wrapper>
 )
 
