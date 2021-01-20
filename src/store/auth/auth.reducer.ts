@@ -5,6 +5,7 @@ import { UserInfos } from 'types/user'
 import { REQUEST } from 'utils/constants/request'
 import { FailureRequest } from 'types/request'
 
+// TODO refactor auth actions like playlists
 export const { Types: AuthTypes, Creators: AuthActions } = createActions({
   signIn: [],
   signInSuccess: ['sessionParams'],

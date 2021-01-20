@@ -28,11 +28,20 @@ export type Playlists = {
   items: Playlist[]
 }
 
-export type Filters = {
+export type PrimitiveType = 'STRING' | 'INTEGER'
+
+export type PlaylistFilter = {
   id: string
   name: string
-  values: {
+  values?: {
     name: string
     value: string
   }[]
+  validation: {
+    entityType?: string
+    pattern?: string
+    primitiveType: PrimitiveType
+    max?: number
+    min?: number
+  }
 }

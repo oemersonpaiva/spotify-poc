@@ -21,7 +21,7 @@ function* fetchPlaylists({ type, params }: FetchPlaylistTypes) {
     })
     yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists))
   } catch ({ response }) {
-    yield put(PlaylistsActions.playlistsRequestRejected())
+    yield put(PlaylistsActions.playlistsRequestRejected(response, type))
   }
 }
 
@@ -36,7 +36,7 @@ function* fetchFilters({ type }: FetchPlaylistTypes) {
     })
     yield put(PlaylistsActions.fetchFiltersSuccess(filters))
   } catch ({ response }) {
-    yield put(PlaylistsActions.playlistsRequestRejected())
+    yield put(PlaylistsActions.playlistsRequestRejected(response, type))
   }
 }
 

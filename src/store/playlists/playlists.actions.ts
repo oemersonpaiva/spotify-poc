@@ -1,9 +1,10 @@
+import { AxiosResponse } from 'axios'
 import {
   createActions,
   DefaultActionCreators,
   DefaultActionTypes
 } from 'reduxsauce'
-import { Filters, Playlists } from 'types/playlist'
+import { PlaylistFilter, Playlists } from 'types/playlist'
 
 export enum PlaylistsTypes {
   FETCH_PLAYLISTS = 'FETCH_PLAYLISTS',
@@ -20,12 +21,15 @@ interface IPlaylistsCreators extends DefaultActionCreators {
   ) => { type: PlaylistsTypes.FETCH_PLAYLISTS_SUCCESS; payload: Playlists }
   fetchFilters: () => { type: PlaylistsTypes.FETCH_FILTERS }
   fetchFiltersSuccess: (
-    payload: Filters[]
+    payload: PlaylistFilter[]
   ) => {
     type: PlaylistsTypes.FETCH_FILTERS_SUCCESS
-    payload: Filters[]
+    payload: PlaylistFilter[]
   }
-  playlistsRequestRejected: () => {
+  playlistsRequestRejected: (
+    response: AxiosResponse,
+    originalType: string
+  ) => {
     type: PlaylistsTypes.PLAYLISTS_REQUEST_REJECTED
   }
 }
