@@ -5,6 +5,7 @@ export const Wrapper = styled.section`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-gap: ${theme.spacings.small};
+    justify-items: center;
     margin: ${theme.spacings.medium};
   `}
 `

@@ -1,3 +1,5 @@
 export { default as Login } from './Login/Login'
+export { default as Playlists } from './Playlists/Playlists'
 export { default as PlaylistCard } from './PlaylistCard/PlaylistCard'
+export { default as PlaylistsFilters } from './PlaylistsFilters/PlaylistsFilters'
 export * from './PlaylistCard/PlaylistCard'

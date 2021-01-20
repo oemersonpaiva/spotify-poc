@@ -4,7 +4,7 @@ import {
   DefaultActionCreators,
   DefaultActionTypes
 } from 'reduxsauce'
-import { PlaylistFilter, Playlists } from 'types/playlist'
+import { PlaylistFilter, Playlists, PlaylistParams } from 'types/playlist'
 
 export enum PlaylistsTypes {
   FETCH_PLAYLISTS = 'FETCH_PLAYLISTS',
@@ -15,7 +15,9 @@ export enum PlaylistsTypes {
 }
 
 interface IPlaylistsCreators extends DefaultActionCreators {
-  fetchPlaylists: () => { type: PlaylistsTypes.FETCH_PLAYLISTS }
+  fetchPlaylists: (
+    params: PlaylistParams
+  ) => { type: PlaylistsTypes.FETCH_PLAYLISTS }
   fetchPlaylistsSuccess: (
     payload: Playlists
   ) => { type: PlaylistsTypes.FETCH_PLAYLISTS_SUCCESS; payload: Playlists }

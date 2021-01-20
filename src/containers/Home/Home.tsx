@@ -1,16 +1,17 @@
-import Playlists from 'components/presentational/Playlists/Playlists'
-import { Navbar } from 'components/structure'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'store/reducers'
 import { AuthActions, AuthState } from 'store/auth'
 import { PlaylistsActions, PlaylistsState } from 'store/playlists'
+import { Playlists, PlaylistsFilters } from 'components/presentational'
+import { Navbar } from 'components/structure'
+import { PlaylistParams } from 'types/playlist'
 
 // TODO adicionar modal para quando o usuario não estiver logado
 const Home = () => {
   const dispatch = useDispatch()
   const { user }: AuthState = useSelector(({ auth }: RootState) => auth)
-  const { items = [] }: PlaylistsState = useSelector(
+  const { items = [], filters = [] }: PlaylistsState = useSelector(
     ({ playlists }: RootState) => playlists
   )
 
@@ -19,7 +20,7 @@ const Home = () => {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(PlaylistsActions.fetchPlaylists())
+    dispatch(PlaylistsActions.fetchPlaylists({ limit: 4 } as PlaylistParams))
   }, [dispatch])
 
   useEffect(() => {
@@ -32,6 +33,8 @@ const Home = () => {
         avatarUrl={user?.avatarUrl ?? ''}
         username={user?.username ?? ''}
       />
+      {/* TODO fetch filters only after collapse box */}
+      <PlaylistsFilters filters={filters} />
       <Playlists playlists={items} />
     </>
   )
