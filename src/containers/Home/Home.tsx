@@ -2,10 +2,11 @@ import Playlists from 'components/presentational/Playlists/Playlists'
 import { Navbar } from 'components/structure'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'store/ducks'
-import { AuthActions, AuthState } from 'store/ducks/auth'
-import { PlaylistsActions, PlaylistsState } from 'store/ducks/playlists'
+import { RootState } from 'store/reducers'
+import { AuthActions, AuthState } from 'store/auth'
+import { PlaylistsActions, PlaylistsState } from 'store/playlists'
 
+// TODO adicionar modal para quando o usuario não estiver logado
 const Home = () => {
   const dispatch = useDispatch()
   const { user }: AuthState = useSelector(({ auth }: RootState) => auth)
@@ -19,6 +20,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(PlaylistsActions.fetchPlaylists())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(PlaylistsActions.fetchFilters())
   }, [dispatch])
 
   return (

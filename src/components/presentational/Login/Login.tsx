@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { AuthActions } from 'store/ducks/auth'
+import { AuthActions } from 'store/auth'
 import useURLParams from 'hooks/useURLParams'
 
 const Login = () => {

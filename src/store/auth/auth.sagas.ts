@@ -1,11 +1,11 @@
-import api from 'services/api'
 import { put, takeLatest } from 'redux-saga/effects'
-import { AuthActions, AuthTypes } from 'store/ducks/auth'
+import { history } from 'routes'
+import api from 'services/api'
 import { SessionParams } from 'types/session'
 import { UserInfos } from 'types/user'
 import { ls, Session } from 'utils/auth/session'
-import { GET, AUTH_USER_DATA, authURL } from 'utils/constants'
-import { history } from 'routes'
+import { authURL, AUTH_USER_DATA, GET } from 'utils/constants'
+import { AuthActions, AuthTypes } from './auth.reducer'
 
 type SignIn = {
   type: string

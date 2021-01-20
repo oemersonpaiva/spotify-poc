@@ -19,7 +19,6 @@ export type PlaylistParams = {
   offset: string
 }
 
-// TODO update types e interfaces
 export type Playlists = {
   limit?: number
   next?: number
@@ -27,4 +26,13 @@ export type Playlists = {
   previous?: number
   total?: number
   items: Playlist[]
+}
+
+export type Filters = {
+  id: string
+  name: string
+  values: {
+    name: string
+    value: string
+  }[]
 }

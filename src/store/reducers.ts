@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import auth from './auth'
-import playlists from './playlists'
+import auth from './auth/auth.reducer'
+import playlists from './playlists/playlists.reducer'
 
 const rootReducer = combineReducers({
   auth,

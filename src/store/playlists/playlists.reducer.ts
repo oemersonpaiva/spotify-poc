@@ -1,32 +1,27 @@
 import { AxiosResponse } from 'axios'
-import { Playlists } from 'types/playlist'
 import { PutEffect } from 'redux-saga/effects'
-import { createActions, createReducer } from 'reduxsauce'
-import { REQUEST } from 'utils/constants/request'
+import { createReducer } from 'reduxsauce'
+import { Filters, Playlists } from 'types/playlist'
 import { FailureRequest } from 'types/request'
-
-export const {
-  Types: PlaylistsTypes,
-  Creators: PlaylistsActions
-} = createActions({
-  fetchPlaylists: ['params'],
-  fetchPlaylistsSuccess: ['payload'],
-  authRequestRejected: ['response', 'originalType']
-})
+import { REQUEST } from 'utils/constants/request'
+import { PlaylistsTypes } from './playlists.actions'
 
 export type PlaylistsState = {
   error?: AxiosResponse
+  filters: Filters[]
   playlistsRequests: {
     [request: string]: string
   }
 } & Playlists
 
-const INITIAL_STATE: PlaylistsState = {
+const INITIAL_STATE = {
   items: [],
+  filters: [],
   playlistsRequests: {
-    [PlaylistsTypes.FETCH_PLAYLISTS]: REQUEST.NOT_STARTED
+    [PlaylistsTypes.FETCH_PLAYLISTS]: REQUEST.NOT_STARTED,
+    [PlaylistsTypes.FETCH_FILTERS]: REQUEST.NOT_STARTED
   }
-}
+} as PlaylistsState
 
 export const fetchPlaylists = (state: PlaylistsState) => ({
   ...state,
@@ -48,7 +43,27 @@ export const fetchPlaylistsSuccess = (
   }
 })
 
-export const authRequestRejected = (
+export const fetchFilters = (state: PlaylistsState) => ({
+  ...state,
+  playlistsRequests: {
+    ...state.playlistsRequests,
+    [PlaylistsTypes.FETCH_FILTERS]: REQUEST.PENDING
+  }
+})
+
+export const fetchFiltersSuccess = (
+  state: PlaylistsState,
+  { payload }: PutEffect & { payload: Filters[] }
+) => ({
+  ...state,
+  filters: payload,
+  playlistsRequests: {
+    ...state.playlistsRequests,
+    [PlaylistsTypes.FETCH_FILTERS]: REQUEST.RESOLVED
+  }
+})
+
+export const playlistsRequestRejected = (
   state: PlaylistsState,
   { response, originalType }: FailureRequest
 ) => ({
@@ -63,5 +78,7 @@ export const authRequestRejected = (
 export default createReducer(INITIAL_STATE, {
   [PlaylistsTypes.FETCH_PLAYLISTS]: fetchPlaylists,
   [PlaylistsTypes.FETCH_PLAYLISTS_SUCCESS]: fetchPlaylistsSuccess,
-  [PlaylistsTypes.AUTH_REQUEST_REJECTED]: authRequestRejected
+  [PlaylistsTypes.FETCH_FILTERS]: fetchFilters,
+  [PlaylistsTypes.FETCH_FILTERS_SUCCESS]: fetchFiltersSuccess,
+  [PlaylistsTypes.PLAYLISTS_REQUEST_REJECTED]: playlistsRequestRejected
 })
