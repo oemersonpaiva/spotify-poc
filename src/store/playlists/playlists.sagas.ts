@@ -16,12 +16,12 @@ function* fetchPlaylists({ type, params }: FetchPlaylistTypes) {
     Object.keys(params).forEach((key) => !params[key] && delete params[key])
 
     const {
-      data: { playlists }
+      data: { playlists, message }
     } = yield api({
       url: FEATURED_PLAYLISTS,
       params
     })
-    yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists))
+    yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists, message))
   } catch ({ response }) {
     yield put(PlaylistsActions.playlistsRequestRejected(response, type))
   }
@@ -30,9 +30,9 @@ function* fetchPlaylists({ type, params }: FetchPlaylistTypes) {
 function* fetchPlaylistsWithPointer({ type, url }: FetchPlaylistTypes) {
   try {
     const {
-      data: { playlists }
+      data: { playlists, message }
     } = yield api({ url })
-    yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists))
+    yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists, message))
   } catch ({ response }) {
     yield put(PlaylistsActions.playlistsRequestRejected(response, type))
   }

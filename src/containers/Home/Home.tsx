@@ -17,7 +17,8 @@ const Home = () => {
     filters = [],
     previous = '',
     next = '',
-    href
+    href,
+    message
   }: PlaylistsState = useSelector(({ playlists }: RootState) => playlists)
 
   const handleClick = (url: string) =>
@@ -38,7 +39,6 @@ const Home = () => {
         () => dispatch(PlaylistsActions.fetchPlaylistsWithPointer(href)),
         FETCH_INTERVAL
       )
-
       return () => clearInterval(interval)
     }
   }, [dispatch, href])
@@ -55,8 +55,10 @@ const Home = () => {
       />
       {/* TODO fetch filters only after collapse box */}
       <PlaylistsFilters filters={filters} />
-      <Playlists playlists={items} />
+      <Playlists playlists={items} title={message} />
+      {/* TODO component pagination? */}
       <div>
+        Pag 1 de 1
         <button
           type="button"
           disabled={!previous}

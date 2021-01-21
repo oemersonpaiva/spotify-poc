@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import * as HeadingStyle from 'components/structure/Heading/Heading.styles'
 
 export const Wrapper = styled.section`
   ${({ theme }) => css`
@@ -7,5 +8,11 @@ export const Wrapper = styled.section`
     grid-gap: ${theme.spacings.small};
     justify-items: center;
     margin: ${theme.spacings.medium};
+
+    ${HeadingStyle.Wrapper} {
+      grid-column: 1/-1;
+      grid-row: 1/1;
+      justify-self: flex-start;
+    }
   `}
 `

@@ -9,6 +9,7 @@ import { PlaylistsTypes } from './playlists.actions'
 export type PlaylistsState = {
   error?: AxiosResponse
   filters: PlaylistFilter[]
+  message: string
   playlistsRequests: {
     [request: string]: string
   }
@@ -20,6 +21,7 @@ const INITIAL_STATE = {
   offset: 0,
   total: 0,
   limit: 20,
+  message: '',
   playlistsRequests: {
     [PlaylistsTypes.FETCH_PLAYLISTS]: REQUEST.NOT_STARTED,
     [PlaylistsTypes.FETCH_FILTERS]: REQUEST.NOT_STARTED
@@ -43,10 +45,11 @@ export const fetchPlaylistsWithPointer = (state: PlaylistsState) => ({
 
 export const fetchPlaylistsSuccess = (
   state: PlaylistsState,
-  { payload }: PutEffect & Playlists
+  { payload, message }: PutEffect & Playlists & { message: string }
 ) => ({
   ...state,
   ...payload,
+  message,
   playlistsRequests: {
     ...state.playlistsRequests,
     [PlaylistsTypes.FETCH_PLAYLISTS]: REQUEST.RESOLVED
