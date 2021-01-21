@@ -8,6 +8,7 @@ import { PlaylistFilter, Playlists, PlaylistParams } from 'types/playlist'
 
 export enum PlaylistsTypes {
   FETCH_PLAYLISTS = 'FETCH_PLAYLISTS',
+  FETCH_PLAYLISTS_WITH_POINTER = 'FETCH_PLAYLISTS_WITH_POINTER',
   FETCH_PLAYLISTS_SUCCESS = 'FETCH_PLAYLISTS_SUCCESS',
   FETCH_FILTERS = 'FETCH_FILTERS',
   FETCH_FILTERS_SUCCESS = 'FETCH_FILTERS_SUCCESS',
@@ -18,6 +19,9 @@ interface IPlaylistsCreators extends DefaultActionCreators {
   fetchPlaylists: (
     params: PlaylistParams
   ) => { type: PlaylistsTypes.FETCH_PLAYLISTS }
+  fetchPlaylistsWithPointer: (
+    url: string
+  ) => { type: PlaylistsTypes.FETCH_PLAYLISTS_WITH_POINTER }
   fetchPlaylistsSuccess: (
     payload: Playlists
   ) => { type: PlaylistsTypes.FETCH_PLAYLISTS_SUCCESS; payload: Playlists }
@@ -41,6 +45,7 @@ export const { Creators: PlaylistsActions } = createActions<
   IPlaylistsCreators
 >({
   fetchPlaylists: ['params'],
+  fetchPlaylistsWithPointer: ['url'],
   fetchPlaylistsSuccess: ['payload'],
   fetchFilters: [],
   fetchFiltersSuccess: ['payload'],

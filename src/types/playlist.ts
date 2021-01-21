@@ -16,15 +16,17 @@ export type PlaylistParams = {
   locale: string
   timestamp: string
   limit: number
-  offset: string
+  offset: number
+  [key: string]: string | number
 }
 
 export type Playlists = {
-  limit?: number
-  next?: number
-  offset?: number
-  previous?: number
-  total?: number
+  limit: number
+  next?: string
+  offset: number
+  previous?: string
+  total: number
+  href?: string
   items: Playlist[]
 }
 

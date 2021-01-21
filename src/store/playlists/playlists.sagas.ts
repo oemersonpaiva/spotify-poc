@@ -2,23 +2,36 @@ import axios from 'axios'
 import { put, takeLatest } from 'redux-saga/effects'
 import api from 'services/api'
 import { PlaylistParams } from 'types/playlist'
-import { FEATURED_PLAYLISTS, GET } from 'utils/constants'
+import { FEATURED_PLAYLISTS, filtersURL, GET } from 'utils/constants'
 import { PlaylistsActions, PlaylistsTypes } from './playlists.actions'
 
 export type FetchPlaylistTypes = {
   type: string
   params: PlaylistParams
+  url: string
 }
 
 function* fetchPlaylists({ type, params }: FetchPlaylistTypes) {
   try {
+    Object.keys(params).forEach((key) => !params[key] && delete params[key])
+
     const {
       data: { playlists }
     } = yield api({
       url: FEATURED_PLAYLISTS,
-      method: GET,
       params
     })
+    yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists))
+  } catch ({ response }) {
+    yield put(PlaylistsActions.playlistsRequestRejected(response, type))
+  }
+}
+
+function* fetchPlaylistsWithPointer({ type, url }: FetchPlaylistTypes) {
+  try {
+    const {
+      data: { playlists }
+    } = yield api({ url })
     yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists))
   } catch ({ response }) {
     yield put(PlaylistsActions.playlistsRequestRejected(response, type))
@@ -30,8 +43,7 @@ function* fetchFilters({ type }: FetchPlaylistTypes) {
     const {
       data: { filters }
     } = yield axios({
-      baseURL: 'http://www.mocky.io/v2',
-      url: '5a25fade2e0000213aa90776',
+      baseURL: filtersURL,
       method: GET
     })
     yield put(PlaylistsActions.fetchFiltersSuccess(filters))
@@ -42,5 +54,9 @@ function* fetchFilters({ type }: FetchPlaylistTypes) {
 
 export function* watchSagas() {
   yield takeLatest(PlaylistsTypes.FETCH_PLAYLISTS, fetchPlaylists)
+  yield takeLatest(
+    PlaylistsTypes.FETCH_PLAYLISTS_WITH_POINTER,
+    fetchPlaylistsWithPointer
+  )
   yield takeLatest(PlaylistsTypes.FETCH_FILTERS, fetchFilters)
 }
