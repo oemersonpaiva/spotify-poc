@@ -30,7 +30,7 @@ const PlaylistsFilters = ({ filters }: PlaylistsFiltersProps) => {
 
   return (
     <S.Wrapper as="form" onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" name="name" />
+      <input type="text" name="name" placeholder="nome" />
       {filters.map(({ id, name, values, validation }) => (
         <div key={id}>
           {name}

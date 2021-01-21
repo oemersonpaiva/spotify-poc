@@ -16,13 +16,18 @@ export const { Types: AuthTypes, Creators: AuthActions } = createActions({
 
 export type AuthState = {
   error?: AxiosResponse
-  user?: UserInfos
+  user: UserInfos
   authRequests: {
     [request: string]: string
   }
 }
 
 const INITIAL_STATE: AuthState = {
+  user: {
+    id: '',
+    avatarUrl: '',
+    username: ''
+  },
   authRequests: {
     [AuthTypes.SIGN_IN]: REQUEST.NOT_STARTED
   }

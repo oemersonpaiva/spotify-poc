@@ -6,7 +6,7 @@ export type NavbarProps = {
   avatarUrl: string
 }
 
-const Navbar = ({ username, avatarUrl }: NavbarProps) => (
+const Navbar = ({ username = '', avatarUrl = '' }: NavbarProps) => (
   <S.Wrapper>
     <S.Container>
       <Logo />
