@@ -4,7 +4,7 @@ import { RootState } from 'store/reducers'
 import { AuthActions, AuthState } from 'store/auth'
 import { PlaylistsActions, PlaylistsState } from 'store/playlists'
 import { Playlists, PlaylistsFilters } from 'components/presentational'
-import { Navbar, Pagination } from 'components/structure'
+import { Heading, Navbar, Pagination } from 'components/structure'
 import { PlaylistParams } from 'types/playlist'
 
 const FETCH_INTERVAL = 30000
@@ -54,7 +54,10 @@ const Home = () => {
       <Navbar avatarUrl={user.avatarUrl} username={user.username} />
       {/* TODO fetch filters only after collapse box */}
       <PlaylistsFilters filters={filters} />
-      <Playlists playlists={items} title={message} />
+      <Heading as="h1" large center>
+        {message}
+      </Heading>
+      <Playlists playlists={items} />
       <Pagination
         handleClickPrevious={() => handleClick(previous)}
         handleClickNext={() => handleClick(next)}

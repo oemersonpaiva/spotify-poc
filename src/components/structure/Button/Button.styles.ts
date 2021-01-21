@@ -44,12 +44,18 @@ export const Wrapper = styled.button<WrapperProps>`
     font-size: ${theme.font.sizes.small};
     line-height: 1;
     padding: ${theme.spacings.xxsmall};
-    transition: all 0.2s ease-in;
+    transition: all 0.3s linear;
     outline: none;
     text-decoration: none;
 
     &:hover {
-      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    &:disabled {
+      cursor: default;
+      pointer-events: none;
+      opacity: 0.85;
     }
 
     ${!!color && wrapperModifiers[color](theme)};

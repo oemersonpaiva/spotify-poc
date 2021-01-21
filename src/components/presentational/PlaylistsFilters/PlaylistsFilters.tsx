@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { PlaylistsActions, PlaylistsState } from 'store/playlists'
 import { RootState } from 'store/reducers'
+import { SearchField } from 'components/form'
 import { PlaylistFilter, PlaylistParams } from 'types/playlist'
 import * as S from './PlaylistsFilters.styles'
+import { Button } from 'components/structure'
 
 export type PlaylistsFiltersProps = {
   filters: PlaylistFilter[]
@@ -30,7 +32,10 @@ const PlaylistsFilters = ({ filters }: PlaylistsFiltersProps) => {
 
   return (
     <S.Wrapper as="form" onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" name="name" placeholder="nome" />
+      <S.SearchFieldWrapper>
+        <SearchField placeholder="Buscar" />
+        <Button color="secondary">IC Filtros</Button>
+      </S.SearchFieldWrapper>
       {filters.map(({ id, name, values, validation }) => (
         <div key={id}>
           {name}

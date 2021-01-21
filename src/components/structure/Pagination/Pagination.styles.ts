@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 ${theme.spacings.small};
-    margin: ${theme.spacings.small} auto;
+    margin: ${theme.spacings.xlarge} auto ${theme.spacings.small};
     max-width: ${theme.grid.container};
     width: 100%;
 
