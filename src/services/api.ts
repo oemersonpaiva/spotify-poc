@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { isAuthenticated, ls, Session } from 'utils/auth/session'
-import { baseURL } from 'utils/constants/endpoints'
+import { GET, baseURL } from 'utils/constants'
 
 const api = axios.create({
   baseURL,
-  headers: { 'Content-Type': 'application/json' }
+  headers: { 'Content-Type': 'application/json' },
+  method: GET
 })
 
 api.interceptors.request.use(async (config: AxiosRequestConfig) => {

@@ -10,6 +10,7 @@ const Navbar = ({ username, avatarUrl }: NavbarProps) => (
   <S.Wrapper>
     <S.Container>
       <Logo />
+      {/* TODO add logout */}
       <Avatar src={avatarUrl} alt={username} />
     </S.Container>
   </S.Wrapper>

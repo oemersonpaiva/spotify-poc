@@ -7,21 +7,41 @@ import { Playlists, PlaylistsFilters } from 'components/presentational'
 import { Navbar } from 'components/structure'
 import { PlaylistParams } from 'types/playlist'
 
-// TODO adicionar modal para quando o usuario não estiver logado
+const FETCH_INTERVAL = 30000
+
 const Home = () => {
   const dispatch = useDispatch()
   const { user }: AuthState = useSelector(({ auth }: RootState) => auth)
-  const { items = [], filters = [] }: PlaylistsState = useSelector(
-    ({ playlists }: RootState) => playlists
-  )
+  const {
+    items = [],
+    filters = [],
+    previous = '',
+    next = '',
+    href
+  }: PlaylistsState = useSelector(({ playlists }: RootState) => playlists)
+
+  const handleClick = (url: string) =>
+    dispatch(PlaylistsActions.fetchPlaylistsWithPointer(url))
 
   useEffect(() => {
     dispatch(AuthActions.fetchAuthUserData())
   }, [dispatch])
 
+  // TODO temp
   useEffect(() => {
     dispatch(PlaylistsActions.fetchPlaylists({ limit: 4 } as PlaylistParams))
   }, [dispatch])
+
+  useEffect(() => {
+    if (href) {
+      const interval = setInterval(
+        () => dispatch(PlaylistsActions.fetchPlaylistsWithPointer(href)),
+        FETCH_INTERVAL
+      )
+
+      return () => clearInterval(interval)
+    }
+  }, [dispatch, href])
 
   useEffect(() => {
     dispatch(PlaylistsActions.fetchFilters())
@@ -36,6 +56,22 @@ const Home = () => {
       {/* TODO fetch filters only after collapse box */}
       <PlaylistsFilters filters={filters} />
       <Playlists playlists={items} />
+      <div>
+        <button
+          type="button"
+          disabled={!previous}
+          onClick={() => handleClick(previous)}
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          disabled={!next}
+          onClick={() => handleClick(next)}
+        >
+          Next
+        </button>
+      </div>
     </>
   )
 }
