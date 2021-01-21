@@ -34,15 +34,15 @@ const Home = () => {
     dispatch(PlaylistsActions.fetchPlaylists({ limit: 4 } as PlaylistParams))
   }, [dispatch])
 
-  useEffect(() => {
-    if (pointer) {
-      const interval = setInterval(
-        () => dispatch(PlaylistsActions.fetchPlaylistsWithPointer(pointer)),
-        FETCH_INTERVAL
-      )
-      return () => clearInterval(interval)
-    }
-  }, [dispatch, pointer])
+  // useEffect(() => {
+  //   if (pointer) {
+  //     const interval = setInterval(
+  //       () => dispatch(PlaylistsActions.fetchPlaylistsWithPointer(pointer)),
+  //       FETCH_INTERVAL
+  //     )
+  //     return () => clearInterval(interval)
+  //   }
+  // }, [dispatch, pointer])
 
   // TODO execute after open filters collapse - filters container?
   useEffect(() => {
