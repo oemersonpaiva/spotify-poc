@@ -3,7 +3,7 @@ import { Playlist } from 'types/playlist'
 import PlaylistCard from './PlaylistCard'
 
 export default {
-  title: 'structure/PlaylistCard',
+  title: 'Structure/PlaylistCard',
   component: PlaylistCard
 } as Meta
 
