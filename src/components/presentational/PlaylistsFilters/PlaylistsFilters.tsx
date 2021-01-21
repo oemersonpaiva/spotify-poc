@@ -10,15 +10,10 @@ export type PlaylistsFiltersProps = {
   filters: PlaylistFilter[]
 }
 
-// const test = {
-//   STRING: 'text',
-//   INTEGER: 'number'
-// }
-
 // TODO add form submit validations
 const PlaylistsFilters = ({ filters }: PlaylistsFiltersProps) => {
   const dispatch = useDispatch()
-  const { limit, offset }: PlaylistsState = useSelector(
+  const { limit, locale, country, offset }: PlaylistsState = useSelector(
     ({ playlists }: RootState) => playlists
   )
   const { register, handleSubmit, getValues, reset } = useForm<PlaylistParams>()
@@ -30,12 +25,12 @@ const PlaylistsFilters = ({ filters }: PlaylistsFiltersProps) => {
     dispatch(PlaylistsActions.fetchPlaylists(getValues()))
 
   useEffect(() => {
-    reset({ limit })
-    // console.log(Math.max(1, (offset - 1) * limit))
-  }, [limit, offset, reset])
+    reset({ limit, locale, country, offset })
+  }, [limit, offset, reset, locale, country])
 
   return (
     <S.Wrapper as="form" onSubmit={handleSubmit(onSubmit)}>
+      <input type="text" name="name" />
       {filters.map(({ id, name, values, validation }) => (
         <div key={id}>
           {name}

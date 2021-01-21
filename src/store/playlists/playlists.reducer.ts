@@ -1,19 +1,20 @@
 import { AxiosResponse } from 'axios'
 import { PutEffect } from 'redux-saga/effects'
 import { createReducer } from 'reduxsauce'
-import { PlaylistFilter, Playlists } from 'types/playlist'
+import { PlaylistFilter, Playlists, PlaylistParams } from 'types/playlist'
 import { FailureRequest } from 'types/request'
 import { REQUEST } from 'utils/constants/request'
 import { PlaylistsTypes } from './playlists.actions'
 
-export type PlaylistsState = {
-  error?: AxiosResponse
-  filters: PlaylistFilter[]
-  message: string
-  playlistsRequests: {
-    [request: string]: string
+export type PlaylistsState = Playlists &
+  PlaylistParams & {
+    error?: AxiosResponse
+    filters: PlaylistFilter[]
+    message: string
+    playlistsRequests: {
+      [request: string]: string
+    }
   }
-} & Playlists
 
 const INITIAL_STATE = {
   items: [],
@@ -43,12 +44,19 @@ export const fetchPlaylistsWithPointer = (state: PlaylistsState) => ({
   }
 })
 
+type FetchPlaylistsSuccess = PutEffect &
+  Playlists & {
+    message: string
+    params?: PlaylistParams
+  }
+
 export const fetchPlaylistsSuccess = (
   state: PlaylistsState,
-  { payload, message }: PutEffect & Playlists & { message: string }
+  { payload, message, params }: FetchPlaylistsSuccess
 ) => ({
   ...state,
   ...payload,
+  ...params,
   message,
   playlistsRequests: {
     ...state.playlistsRequests,

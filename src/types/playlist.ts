@@ -12,12 +12,15 @@ export type Playlist = {
 }
 
 export type PlaylistParams = {
-  country: string
-  locale: string
-  timestamp: string
-  limit: number
-  offset: number
-  [key: string]: string | number
+  country?: string
+  locale?: string
+  timestamp?: string
+  limit?: number
+  offset?: number
+}
+
+export type PlaylistParamsIndex = PlaylistParams & {
+  [key: string]: string | number | undefined
 }
 
 export type Playlists = {

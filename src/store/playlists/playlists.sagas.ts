@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { put, takeLatest } from 'redux-saga/effects'
 import api from 'services/api'
-import { PlaylistParams } from 'types/playlist'
+import { PlaylistParamsIndex } from 'types/playlist'
 import { FEATURED_PLAYLISTS, filtersURL, GET } from 'utils/constants'
 import { PlaylistsActions, PlaylistsTypes } from './playlists.actions'
 
 export type FetchPlaylistTypes = {
   type: string
-  params: PlaylistParams
+  params: PlaylistParamsIndex
   url: string
 }
 
@@ -21,7 +21,9 @@ function* fetchPlaylists({ type, params }: FetchPlaylistTypes) {
       url: FEATURED_PLAYLISTS,
       params
     })
-    yield put(PlaylistsActions.fetchPlaylistsSuccess(playlists, message))
+    yield put(
+      PlaylistsActions.fetchPlaylistsSuccess(playlists, message, params)
+    )
   } catch ({ response }) {
     yield put(PlaylistsActions.playlistsRequestRejected(response, type))
   }

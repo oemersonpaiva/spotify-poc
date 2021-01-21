@@ -24,7 +24,8 @@ interface IPlaylistsCreators extends DefaultActionCreators {
   ) => { type: PlaylistsTypes.FETCH_PLAYLISTS_WITH_POINTER }
   fetchPlaylistsSuccess: (
     payload: Playlists,
-    message: string
+    message: string,
+    params?: PlaylistParams
   ) => { type: PlaylistsTypes.FETCH_PLAYLISTS_SUCCESS; payload: Playlists }
   fetchFilters: () => { type: PlaylistsTypes.FETCH_FILTERS }
   fetchFiltersSuccess: (
@@ -47,7 +48,7 @@ export const { Creators: PlaylistsActions } = createActions<
 >({
   fetchPlaylists: ['params'],
   fetchPlaylistsWithPointer: ['url'],
-  fetchPlaylistsSuccess: ['payload', 'message'],
+  fetchPlaylistsSuccess: ['payload', 'message', 'params'],
   fetchFilters: [],
   fetchFiltersSuccess: ['payload'],
   playlistsRequestRejected: ['response', 'originalType']

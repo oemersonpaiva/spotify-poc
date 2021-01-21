@@ -17,10 +17,11 @@ const Home = () => {
     filters = [],
     previous = '',
     next = '',
-    href,
+    href: pointer,
     message
   }: PlaylistsState = useSelector(({ playlists }: RootState) => playlists)
 
+  // TODO pagination
   const handleClick = (url: string) =>
     dispatch(PlaylistsActions.fetchPlaylistsWithPointer(url))
 
@@ -34,15 +35,16 @@ const Home = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (href) {
+    if (pointer) {
       const interval = setInterval(
-        () => dispatch(PlaylistsActions.fetchPlaylistsWithPointer(href)),
+        () => dispatch(PlaylistsActions.fetchPlaylistsWithPointer(pointer)),
         FETCH_INTERVAL
       )
       return () => clearInterval(interval)
     }
-  }, [dispatch, href])
+  }, [dispatch, pointer])
 
+  // TODO execute after open filters collapse - filters container?
   useEffect(() => {
     dispatch(PlaylistsActions.fetchFilters())
   }, [dispatch])
