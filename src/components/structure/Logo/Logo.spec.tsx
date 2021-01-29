@@ -5,7 +5,7 @@ describe('<Logo />', () => {
   it('should render the heading', () => {
     const { getByLabelText } = renderWithProviders(<Logo />)
 
-    expect(getByLabelText(/spotifood/i)).toBeInTheDocument()
-    expect(getByLabelText(/spotifood/i)).toMatchSnapshot()
+    expect(getByLabelText(/spotify poc/i)).toBeInTheDocument()
+    expect(getByLabelText(/spotify poc/i)).toMatchSnapshot()
   })
 })

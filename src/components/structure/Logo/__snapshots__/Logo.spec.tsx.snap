@@ -2,7 +2,7 @@
 
 exports[`<Logo /> should render the heading 1`] = `
 <svg
-  aria-label="Spotifood"
+  aria-label="Spotify POC"
 >
   logo.svg
 </svg>

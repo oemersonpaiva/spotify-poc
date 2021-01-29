@@ -7,7 +7,7 @@ describe('<Navbar />', () => {
       <Navbar username="John Doe" avatarUrl="https://i.pravatar.cc/300" />
     )
 
-    expect(getByLabelText(/spotifood/i)).toBeInTheDocument()
+    expect(getByLabelText(/spotify poc/i)).toBeInTheDocument()
     expect(getByRole('img', { name: /john doe/i })).toBeInTheDocument()
   })
 })

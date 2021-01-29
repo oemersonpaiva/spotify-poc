@@ -3,7 +3,7 @@ import * as S from './Logo.styles'
 
 const Logo = () => (
   <S.Wrapper href="/">
-    <LogoIcon aria-label="Spotifood" /> Spotifood
+    <LogoIcon aria-label="Spotify POC" /> Spotify POC
   </S.Wrapper>
 )
 
